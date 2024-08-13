@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Power Status</title>
+    <link rel="stylesheet" href="../static/style.css">
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+        // JavaScript函数，用于触发Python脚本执行
+        function callPythonFunction() {
+            // 使用Ajax发送POST请求给Flask后端
+            $.ajax({
+                type: "POST",
+                url: "/Power_Status",
+                success: function(response){
+                    // 这里处理成功后的响应
+                    console.log(response);
+                    alert('Python脚本执行成功！');
+                },
+                error: function(error){
+                    // 这里处理错误情况
+                    console.error(error);
+                    alert('Python脚本执行失败！');
+                }
+            });
+        }
+    </script>
+  </head>
+
+  <body>
+    <div class="container">
+      <div class="sidebar">
+        <!-- 左边的目录 -->
+	<img src="{{ url_for('static', filename='images/GAPSLOGO_2023.png') }}"height="170" alt="Description">
+        <ul>
+          <h2><a href={{ url_for('index')}}>Dashboard</a></h2>
+          <h2><a href={{ url_for('TOF')}}>TOF</a></h2>
+          <h2><a href={{ url_for('power_load')}}>Tracker</a></h2>
+          <h2><a href={{ url_for('Thermal')}}>Thermal</a></h2>
+          <h2><a href={{ url_for('Payload')}}>Payload</a></h2>
+
+          <!-- 添加更多目录项 -->
+        </ul>
+      </div>
+      <div class="right-column">
+        <div class="main-content1">
+    
+        <h1>Tracker System</h1>
+        <h2><a href={{ url_for('power_status')}}>Power Status</a></h2>
+        <h2><a href={{ url_for('power_load')}}>Power Load </a></h2>
+        <h2><a href={{ url_for('asic_temp')}}>ASIC Temp </a></h2>
+        <h2><a href={{ url_for('trigger_rate')}}>Trigger Rate</a></h2>
+        <h2><a href={{ url_for('band_width')}}>Band Width</a></h2> 
+        <h2><a href={{ url_for('event_display')}}>Event Display</a></h2> 
+    </div>
+       
+
+      <div class="main-content2">  
+
+	<div id="section2" class="section">
+    <div style="text-align: center;">
+    <h1>HVLVPS</h1>
+  </div>
+   
+   
+    
+    
+  <h2 id="HVLVPS">High Voltage Low Voltage Power System</h2>
+
+  <img alt="test" src="{{ url_for('static', filename='images/power_status_hvlv_even_1.png') }}">
+  <img alt="test" src="{{ url_for('static', filename='images/power_status_hvlv_even_2.png') }}">
+  <img alt="test" src="{{ url_for('static', filename='images/power_status_hvlv_odd1.png') }}">
+  <img alt="test" src="{{ url_for('static', filename='images/power_status_hvlv_odd2.png') }}">
+  </div></div>
+  
+</div> 
+</div>
+  </body>
+</html>
+
+

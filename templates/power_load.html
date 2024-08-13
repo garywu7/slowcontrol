@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Power Load</title>
+    <link rel="stylesheet" href="../static/style.css">
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+        // JavaScript函数，用于触发Python脚本执行
+        function callPythonFunction() {
+            // 使用Ajax发送POST请求给Flask后端
+            $.ajax({
+                type: "POST",
+                url: "/Power_Load",
+                success: function(response){
+                    // 这里处理成功后的响应
+                    console.log(response);
+                    alert('Python脚本执行成功！');
+                },
+                error: function(error){
+                    // 这里处理错误情况
+                    console.error(error);
+                    alert('Python脚本执行失败！');
+                }
+            });
+        }
+    </script>
+  </head>
+
+  <body>
+    <div class="container">
+      <div class="sidebar">
+        <!-- 左边的目录 -->
+	<img src="{{ url_for('static', filename='images/GAPSLOGO_2023.png') }}"height="170" alt="Description">
+        <ul>
+          <h2><a href={{ url_for('index')}}>Dashboard</a></h2>
+          <h2><a href={{ url_for('TOF')}}>TOF</a></h2>
+          <h2><a href={{ url_for('power_load')}}>Tracker</a></h2>
+          <h2><a href={{ url_for('Thermal')}}>Thermal</a></h2>
+          <h2><a href={{ url_for('Payload')}}>Payload</a></h2>
+
+          <!-- 添加更多目录项 -->
+	</ul></div>
+	<div class="right-column">
+    <div class="main-content1">
+    <h1>Tracker System</h1>
+    <h2><a href={{ url_for('power_status')}}>Power Status</a></h2>
+    <h2><a href={{ url_for('power_load')}}>Power Load </a></h2>
+    <h2><a href={{ url_for('asic_temp')}}>ASIC Temp </a></h2>
+    <h2><a href={{ url_for('trigger_rate')}}>Trigger Rate</a></h2>
+    <h2><a href={{ url_for('band_width')}}>Band Width</a></h2> 
+    <h2><a href={{ url_for('event_display')}}>Event Display</a></h2> 
+</div>
+  
+      
+      <div class="main-content2">
+        <!-- 右边的内容 -->
+        <div id="section2" class="section">
+          <div style="text-align: center;">
+    <h1>Power Load</h1>
+  </div>
+   
+   
+    
+    <form action="/Tracker/Power_Load" method="POST">
+    <select name="selecttime0" >
+    	<option value="60" >60 min</option>
+   	<option value="30" >30 min</option>
+	<option value="15"selected>15 min</option>
+    	<option value="5">5 min</option>
+    </select>
+   	 <input type="text" name="timeperiod0" placeholder="Enter your time period (min)">
+  <input type="text" name="timebegin0" placeholder="Begin %Y/%m/%d/%H/%M">
+  <input type="text" name="timeend0" placeholder="End %Y/%m/%d/%H/%M">
+  <label for="layer0">layer:</label>
+  <select name="layer0" id="layer0">
+    <option value="0" >0</option>
+    <option value="1" >1</option>
+    <option value="2">2</option>
+    <option value="3"selected>3</option>
+    <option value="4" >4</option>
+    <option value="5" >5</option>
+    <option value="6" >6</option>
+  </select>
+  <label for="row0">row:</label>
+  <select name="row0" id="row0" >
+    <option value="0" >0</option>
+    <option value="1" >1</option>
+    <option value="2">2</option>
+    <option value="3">3</option>
+    <option value="4" >4</option>
+    <option value="5" >5</option>
+    <option value="all" selected>all</option>
+  </select>
+  
+  
+
+
+	 <button type="submit" onClick="callPythonFunction()">Submit</button>
+   <img alt="test" src="{{ url_for('static', filename='images/label_row.png') }}">
+    </form>
+    <h2>Low-Voltage Power System</h2>
+    <h3>IF Board_LV</h3>
+    <img alt="test" src="{{ url_for('static', filename='images/power_load_lv_IF.png') }}">
+    <h3>Digital_LV</h3>
+    <img alt="test" src="{{ url_for('static', filename='images/power_load_lv_digital.png') }}">
+    <h3>Analog_LV</h3>
+    <img alt="test" src="{{ url_for('static', filename='images/power_load_lv_analog.png') }}">
+    <h3>Calib_LV</h3>
+    <img alt="test" src="{{ url_for('static', filename='images/power_load_lv_calib.png') }}">
+    
+<h2>High-Voltage Power System</h2>
+<form action="/Tracker/Power_Load" method="POST">
+  <select name="selecttime1" >
+    <option value="60" >60 min</option>
+   <option value="30" >30 min</option>
+<option value="15"selected>15 min</option>
+    <option value="5">5 min</option>
+  </select>
+    <input type="text" name="timeperiod1" placeholder="Enter your time period (min)">
+<input type="text" name="timebegin1" placeholder="Begin %Y/%m/%d/%H/%M">
+<input type="text" name="timeend1" placeholder="End %Y/%m/%d/%H/%M">
+<label for="layer1">layer:</label>
+<select name="layer1" id="layer1">
+  <option value="0" >0</option>
+  <option value="1" >1</option>
+  <option value="2">2</option>
+  <option value="3"selected>3</option>
+  <option value="4" >4</option>
+  <option value="5" >5</option>
+  <option value="6" >6</option>
+</select>
+<label for="row1">row:</label>
+<select name="row1" id="row1">
+  <option value="0" >0</option>
+  <option value="1" >1</option>
+  <option value="2">2</option>
+  <option value="3"selected>3</option>
+  <option value="4" >4</option>
+  <option value="5" >5</option>
+  
+</select>
+<label for="module1">module:</label>
+<select name="module1" id="module1">
+  <option value="0" >0</option>
+  <option value="1" >1</option>
+  <option value="2">2</option>
+  <option value="3">3</option>
+  <option value="4" >4</option>
+  <option value="5" >5</option>
+  <option value="all"selected >all</option>
+</select>
+
+
+
+ <button type="submit" onClick="callPythonFunction()">Submit</button>
+ <img alt="test" src="{{ url_for('static', filename='images/label.png') }}">
+  </form>
+    <img alt="test" src="{{ url_for('static', filename='images/power_load_HV.png') }}">
+
+    
+  </div>
+</div> 
+</div>
+  </body>
+</html>
+
+

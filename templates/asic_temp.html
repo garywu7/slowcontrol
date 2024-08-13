@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Asic Temp</title>
+    <link rel="stylesheet" href="../static/style.css">
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+        // JavaScript函数，用于触发Python脚本执行
+        function callPythonFunction() {
+            // 使用Ajax发送POST请求给Flask后端
+            $.ajax({
+                type: "POST",
+                url: "/Tracker/Asic_Temp",
+                success: function(response){
+                    // 这里处理成功后的响应
+                    console.log(response);
+                    alert('Python脚本执行成功！');
+                },
+                error: function(error){
+                    // 这里处理错误情况
+                    console.error(error);
+                    alert('Python脚本执行失败！');
+                }
+            });
+        }
+    </script>
+  </head>
+
+  <body>
+    <div class="container">
+      <div class="sidebar">
+        <!-- 左边的目录 -->
+	<img src="{{ url_for('static', filename='images/GAPSLOGO_2023.png') }}" height="240" alt="Description">
+        <ul>
+          <h2><a href={{ url_for('index')}}>Dashboard</a></h2>
+          <h2><a href={{ url_for('TOF')}}>TOF</a></h2>
+          <h2><a href={{ url_for('Tracker')}}>Tracker</a></h2>
+          <h2><a href={{ url_for('Thermal')}}>Thermal</a></h2>
+          <h2><a href={{ url_for('Payload')}}>Payload</a></h2>
+
+          <!-- 添加更多目录项 -->
+	</ul></div>
+  <div class="right-column">
+	<div class="main-content1">
+        <!-- 右边的内容 -->
+
+
+    <h1>Tracker System</h1>
+    <h2><a href={{ url_for('power_status')}}>Power Status</a></h2>
+    <h2><a href={{ url_for('power_load')}}>Power Load </a></h2>
+    <h2><a href={{ url_for('asic_temp')}}>ASIC Temp </a></h2>
+    <h2><a href={{ url_for('trigger_rate')}}>Trigger Rate</a></h2>
+    <h2><a href={{ url_for('band_width')}}>Band Width</a></h2>
+    <h2><a href={{ url_for('event_display')}}>Event Display</a></h2>     
+
+   </div>
+      
+      <div class="main-content2">
+        <!-- 右边的内容 -->
+        <div id="section2" class="section">
+          <div style="text-align: center;">
+    <h1>ASIC Temp</h1>
+  </div>
+   
+   
+    
+    <form action="/Tracker/Asic_Temp" method="POST">
+    <select name="selecttime" >
+    	<option value="60" >60 min</option>
+   	<option value="30" >30 min</option>
+	<option value="15"selected>15 min</option>
+    	<option value="5">5 min</option>
+    </select>
+   	 <input type="text" name="timeperiod" placeholder="Enter your time period (min)">
+  <input type="text" name="timebegin" placeholder="Begin %Y/%m/%d/%H/%M">
+  <input type="text" name="timeend" placeholder="End %Y/%m/%d/%H/%M">
+  <select name="row" >
+    <option value="0" >0</option>
+    <option value="1" >1</option>
+    <option value="2">2</option>
+    <option value="3"selected>3</option>
+    <option value="4" >4</option>
+    <option value="5" >5</option>
+  </select>
+  <select name="module" >
+    <option value="0" >0</option>
+    <option value="1" >1</option>
+    <option value="2">2</option>
+    <option value="3">3</option>
+    <option value="4" >4</option>
+    <option value="5" >5</option>
+    <option value="all" selected>all</option>
+  </select>
+
+
+	 <button type="submit" onClick="callPythonFunction()">Submit</button>
+   <img alt="test" src="{{ url_for('static', filename='images/label.png') }}">  
+  </form>
+  
+  <div class="perlayer">
+    <h2>Layer-0</h2> 
+    <img alt="test" src="{{ url_for('static', filename='images/temp_layer0.png') }}">
+    <img alt="test" src="{{ url_for('static', filename='images/temp_heatmap_layer0.png') }}">
+  </div>
+  <div class="perlayer"> 
+    <h2>Layer-1</h2> 
+    <img alt="test" src="{{ url_for('static', filename='images/temp_layer1.png') }}">
+    <img alt="test" src="{{ url_for('static', filename='images/temp_heatmap_layer1.png') }}">
+  </div>
+  <div class="perlayer"> 
+    <h2>Layer-2</h2>
+    <img alt="test" src="{{ url_for('static', filename='images/temp_layer2.png') }}">
+    <img alt="test" src="{{ url_for('static', filename='images/temp_heatmap_layer2.png') }}">
+  </div>
+  <div class="perlayer"> 
+    <h2>Layer-3</h2> 
+    <img alt="test" src="{{ url_for('static', filename='images/temp_layer3.png') }}">
+    <img alt="test" src="{{ url_for('static', filename='images/temp_heatmap_layer3.png') }}">
+  </div>
+  <div class="perlayer"> 
+    <h2>Layer-4</h2> 
+    <img alt="test" src="{{ url_for('static', filename='images/temp_layer4.png') }}">
+    <img alt="test" src="{{ url_for('static', filename='images/temp_heatmap_layer4.png') }}">
+  </div>
+  <div class="perlayer"> 
+    <h2>Layer-5</h2> 
+    <img alt="test" src="{{ url_for('static', filename='images/temp_layer5.png') }}">
+    <img alt="test" src="{{ url_for('static', filename='images/temp_heatmap_layer5.png') }}">
+  </div>
+  <div class="perlayer"> 
+    <h2>Layer-6</h2>
+    <img alt="test" src="{{ url_for('static', filename='images/temp_layer6.png') }}">
+    <img alt="test" src="{{ url_for('static', filename='images/temp_heatmap_layer6.png') }}">
+  </div></div>
+</div> 
+</div>
+</div>
+  </body>
+</html>
+
+

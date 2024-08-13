@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Index</title>
+    <link rel="stylesheet" href="../static/style.css">
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+        // JavaScript函数，用于触发Python脚本执行
+        function callPythonFunction() {
+            // 使用Ajax发送POST请求给Flask后端
+            $.ajax({
+                type: "POST",
+                url: "/",
+                success: function(response){
+                    // 这里处理成功后的响应
+                    console.log(response);
+                    alert('Python脚本执行成功！');
+                },
+                error: function(error){
+                    // 这里处理错误情况
+                    console.error(error);
+                    alert('Python脚本执行失败！');
+                }
+            });
+        }
+    </script>
+  </head>
+
+  <body>
+    <div class="container">
+      <div class="sidebar">
+        <!-- 左边的目录 -->
+	<img src="{{ url_for('static', filename='images/GAPSLOGO_2023.png') }}"height="170" alt="Description">
+        <ul>
+          <h2><a href={{ url_for('index')}}>Dashboard</a></h2>
+          <h2><a href={{ url_for('TOF')}}>TOF</a></h2>
+          <h2><a href={{ url_for('power_load')}}>Tracker</a></h2>
+          <h2><a href={{ url_for('Thermal')}}>Thermal</a></h2>
+          <h2><a href={{ url_for('Payload')}}>Payload</a></h2>
+
+          <!-- 添加更多目录项 -->
+        </ul>
+      </div>
+      <div class="right-column">
+      <div class="main-content2">  
+
+	<div id="section2" class="section">
+    <div style="text-align: center;">
+    <h1> GAPS Onground Monitor System Dashboard</h1>
+  </div>
+  <h2><a href="#PDU">PDU</a>
+  <a href="#OHP">Thermal</a>
+  <a href="#HVLVPS">Tracker</a>
+ 
+  <div class ="grey">
+    <div class="flex-container">
+    <h2 id="PDU">PDU</h2>
+  <img alt="test" src="{{ url_for('static', filename='images/label_status.png') }}">
+  </div>
+  <img alt="test" src="{{ url_for('static', filename='images/pdu_test_0.png') }}">
+  <img alt="test" src="{{ url_for('static', filename='images/pdu_test_2.png') }}">
+  <img alt="test" src="{{ url_for('static', filename='images/pdu_test_3.png') }}">
+</div>
+<div class ="dimgrey">
+    <h2 id="OHP">OHP Temperature</h2>
+    
+ 
+  <img alt="test" src="{{ url_for('static', filename='images/label_rtd1.png') }}"> 
+  <img alt="test" src="{{ url_for('static', filename='images/rtd0.png') }}"> 
+  <img alt="test" src="{{ url_for('static', filename='images/label_rtd2.png') }}"> 
+  <img alt="test" src="{{ url_for('static', filename='images/rtd1.png') }}"> 
+  <img alt="test" src="{{ url_for('static', filename='images/label_rtd3.png') }}"> 
+  <img alt="test" src="{{ url_for('static', filename='images/rtd2.png') }}"> 
+  <img alt="test" src="{{ url_for('static', filename='images/label_rtd4.png') }}"> 
+  <img alt="test" src="{{ url_for('static', filename='images/rtd3.png') }}"> 
+</div>
+  <div class ="grey">
+    <div class="flex-container">
+    <h2 id="HVLVPS">Tracker: High Voltage Low Voltage Power System</h2>
+    <img alt="test" src="{{ url_for('static', filename='images/label_status.png') }}">
+  </div>
+  <img alt="test" src="{{ url_for('static', filename='images/power_status_hvlv_even_1.png') }}">
+  <img alt="test" src="{{ url_for('static', filename='images/power_status_hvlv_even_2.png') }}">
+  <img alt="test" src="{{ url_for('static', filename='images/power_status_hvlv_odd1.png') }}">
+  <img alt="test" src="{{ url_for('static', filename='images/power_status_hvlv_odd2.png') }}">
+  </div>
+  <div class ="dimgrey">
+      <h2 id="ASIC">Tracker: ASIC Temperature</h2>
+   
+    <img alt="test" src="{{ url_for('static', filename='images/temp_heatmap_layer0.png') }}">
+    <img alt="test" src="{{ url_for('static', filename='images/temp_heatmap_layer1.png') }}">
+    <img alt="test" src="{{ url_for('static', filename='images/temp_heatmap_layer2.png') }}">
+    <img alt="test" src="{{ url_for('static', filename='images/temp_heatmap_layer3.png') }}">
+    <img alt="test" src="{{ url_for('static', filename='images/temp_heatmap_layer4.png') }}">
+    <img alt="test" src="{{ url_for('static', filename='images/temp_heatmap_layer5.png') }}">
+    <img alt="test" src="{{ url_for('static', filename='images/temp_heatmap_layer6.png') }}">
+  </div>
+  </div></div>
+  
+</div> 
+</div>
+  </body>
+</html>
+
+

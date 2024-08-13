@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Tracker</title>
+ <link rel="stylesheet" href="../static/style.css">
+
+  </head>
+
+  <body>
+    <div class="container">
+      <div class="sidebar">
+        <!-- 左边的目录 -->
+        <ul>
+          <h2><a href={{ url_for('index')}}>Index</a></h2>
+          <h2><a href={{ url_for('TOF')}}>TOF</a></h2>
+          <h2><a href={{ url_for('Tracker')}}>Tracker</a></h2>
+          <h2><a href={{ url_for('Thermal')}}>Thermal</a></h2>
+          <h2><a href={{ url_for('Payload')}}>Payload</a></h2>
+
+          <!-- 添加更多目录项 -->
+        </ul>
+      </div>
+      <div class="main-content1">
+        <!-- 右边的内容 -->
+        <div id="section1" class="section">
+
+    <h1>Tracker System</h1>
+    <h2><a href={{ url_for('power_status')}}>Power Status</a></h2>
+    <h2><a href={{ url_for('power_load')}}>Power Load </a></h2>
+    <h2><a href={{ url_for('asic_temp')}}>ASIC Temp </a></h2>
+    <h2><a href={{ url_for('trigger_rate')}}>Trigger Rate</a></h2>
+    <h2><a href={{ url_for('band_width')}}>Band Width</a></h2>
+    <h2><a href={{ url_for('event_display')}}>Event Display</a></h2>
+	</div>
+      
+        
+
+
+
+
+
+</div>
+
+  </body>
+</html>
+
+

@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>TOF</title>
+    <link rel="stylesheet" href="../static/style.css">
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+        // JavaScript函数，用于触发Python脚本执行
+        function callPythonFunction() {
+            // 使用Ajax发送POST请求给Flask后端
+            $.ajax({
+                type: "POST",
+                url: "/TOF",
+                success: function(response){
+                    // 这里处理成功后的响应
+                    console.log(response);
+                    alert('Python脚本执行成功！');
+                },
+                error: function(error){
+                    // 这里处理错误情况
+                    console.error(error);
+                    alert('Python脚本执行失败！');
+                }
+            });
+        }
+    </script>
+  </head>
+
+  <body>
+    <div class="container">
+      <div class="sidebar">
+        <!-- 左边的目录 -->
+        <ul>
+          <h2><a href={{ url_for('index')}}>Index</a></h2>
+          <h2><a href={{ url_for('TOF')}}>TOF</a></h2>
+          <h2><a href={{ url_for('Tracker')}}>Tracker</a></h2>
+          <h2><a href={{ url_for('Thermal')}}>Thermal</a></h2>
+          <h2><a href={{ url_for('Payload')}}>Payload</a></h2>
+
+          <!-- 添加更多目录项 -->
+        </ul>
+      </div>
+      <div class="main-content">
+        <!-- 右边的内容 -->
+        <div id="section1" class="section">
+    <h1>TOF system</h1>
+
+   
+   
+    
+    <form action="/TOF" method="POST">
+    <select name="selecttime" >
+    	<option value="60" selected>60 min</option>
+   	<option value="30" >30 min</option>
+	<option value="15">15 min</option>
+    	<option value="5">5 min</option>
+    </select>
+   	 <input type="text" name="timeperiod" placeholder="Enter your time period (min)">
+  <input type="text" name="timebegin" placeholder="Begin %Y/%m/%d/%H/%M">
+  <input type="text" name="timeend" placeholder="End %Y/%m/%d/%H/%M">
+	 <button type="submit" onClick="callPythonFunction()">Submit</button>
+    </form>
+    <h2>data</h2>
+    <img alt="test" src="{{ url_for('static', filename='images/test.jpg') }}">
+    <h2>power</h2>
+    <img alt="test" src="{{ url_for('static', filename='images/test.jpg') }}">
+
+    <h2>Trigger</h2>
+  </div>
+</div> 
+</div>
+  </body>
+</html>
+

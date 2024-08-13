@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Event Display</title>
+    <link rel="stylesheet" href="../static/style.css">
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+        // JavaScript函数，用于触发Python脚本执行
+        function callPythonFunction() {
+            // 使用Ajax发送POST请求给Flask后端
+            $.ajax({
+                type: "POST",
+                url: "/Event_Display",
+                success: function(response){
+                    // 这里处理成功后的响应
+                    console.log(response);
+                    alert('Python脚本执行成功！');
+                },
+                error: function(error){
+                    // 这里处理错误情况
+                    console.error(error);
+                    alert('Python脚本执行失败！');
+                }
+            });
+        }
+    </script>
+  </head>
+
+  <body>
+    <div class="container">
+      <div class="sidebar">
+        <!-- 左边的目录 -->
+       <img src="{{ url_for('static', filename='images/GAPSLOGO_2023.png') }}"height="170" alt="Description">
+	<ul>
+          <h2><a href={{ url_for('index')}}>Dashboard</a></h2>
+          <h2><a href={{ url_for('TOF')}}>TOF</a></h2>
+          <h2><a href={{ url_for('power_load')}}>Tracker</a></h2>
+          <h2><a href={{ url_for('Thermal')}}>Thermal</a></h2>
+          <h2><a href={{ url_for('Payload')}}>Payload</a></h2>
+
+          <!-- 添加更多目录项 -->
+	</ul></div>
+	<div class="right-column">
+    <div class="main-content1">
+
+    <h1>Tracker System</h1>
+    <h2><a href={{ url_for('power_status')}}>Power Status</a></h2>
+    <h2><a href={{ url_for('power_load')}}>Power Load </a></h2>
+    <h2><a href={{ url_for('asic_temp')}}>ASIC Temp </a></h2>
+    <h2><a href={{ url_for('trigger_rate')}}>Trigger Rate</a></h2>
+    <h2><a href={{ url_for('band_width')}}>Band Width</a></h2> 
+    <h2><a href={{ url_for('event_display')}}>Event Display</a></h2> 
+</div>
+   
+      
+      <div class="main-content2">
+        <!-- 右边的内容 -->
+        <div id="section2" class="section">
+          <div style="text-align: center;">
+    <h1>Event Display</h1>
+  </div>
+   
+   
+    
+    <form action="/Tracker/Event_Display" method="POST">
+    <select name="selecttime" >
+    	<option value="60" >60 min</option>
+   	  <option value="30" >30 min</option>
+	    <option value="15">15 min</option>
+    	<option value="5"selected>5 min</option>
+    </select>
+   	  <input type="text" name="timeperiod" placeholder="Enter your time period (min)">
+      <input type="text" name="timebegin" placeholder="Begin %Y/%m/%d/%H/%M">
+      <input type="text" name="timeend" placeholder="End %Y/%m/%d/%H/%M">
+    <select name="row" >
+      <option value="0" >0</option>
+      <option value="1" >1</option>
+      <option value="2">2</option>
+      <option value="3"selected>3</option>
+      <option value="4" >4</option>
+      <option value="5" >5</option>
+    </select>
+    <select name="module" >
+      <option value="0" >0</option>
+      <option value="1" >1</option>
+      <option value="2">2</option>
+      <option value="3"selected>3</option>
+      <option value="4" >4</option>
+      <option value="5" >5</option>
+      <option value="all" >all</option>
+    </select>
+    <select name="channel" >
+      <option value="0" selected>0</option>
+      <option value="1" >1</option>
+      <option value="2" >2</option>
+      <option value="3" >3</option>
+      <option value="4" >4</option>
+      <option value="5" >5</option>
+      <option value="6" >6</option>
+      <option value="7" >7</option>
+      <option value="8" >8</option>
+      <option value="9" >9</option>
+      <option value="10" >10</option>
+      <option value="11" >11</option>
+      <option value="12" >12</option>
+      <option value="13" >13</option>
+      <option value="14" >14</option>
+      <option value="15" >15</option>
+      <option value="16" >16</option>
+      <option value="17" >17</option>
+      <option value="18" >18</option>
+      <option value="19" >19</option>
+      <option value="20" >20</option>
+      <option value="21" >21</option>
+      <option value="22" >22</option>
+      <option value="23" >23</option>
+      <option value="24" >24</option>
+      <option value="25" >25</option>
+      <option value="26" >26</option>
+      <option value="27" >27</option>
+      <option value="28" >28</option>
+      <option value="29" >29</option>
+      <option value="30" >30</option>
+      <option value="31" >31</option>
+      <option value="all" >all</option>
+    </select>
+    
+	  <button type="submit" onClick="callPythonFunction()">Submit</button>
+    <img alt="test" src="{{ url_for('static', filename='images/label.png') }}">
+    </form>
+   
+    <h2>Spectrum</h2>
+    <h2>Layer-0</h2> 
+    <img alt="test" src="{{ url_for('static', filename='images/event_display_layer0.png') }}">
+    
+    <h2>Layer-1</h2>
+    <img alt="test" src="{{ url_for('static', filename='images/event_display_layer1.png') }}">
+    <h2>Layer-2</h2>
+    <img alt="test" src="{{ url_for('static', filename='images/event_display_layer2.png') }}">
+<h2>Layer-3</h2>
+    <img alt="test" src="{{ url_for('static', filename='images/event_display_layer3.png') }}">
+<h2>Layer-4</h2>
+    <img alt="test" src="{{ url_for('static', filename='images/event_display_layer4.png') }}">
+<h2>Layer-5</h2>
+    <img alt="test" src="{{ url_for('static', filename='images/event_display_layer5.png') }}">
+<h2>Layer-6</h2>
+    <img alt="test" src="{{ url_for('static', filename='images/event_display_layer6.png') }}">
+
+    
+    
+  </div>
+</div> 
+</div></div>
+  </body>
+</html>
+
+
