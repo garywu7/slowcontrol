@@ -1,0 +1,3 @@
+Installing python and packages: python3.8, rpyc5.3.1 "pip install rpyc==5.3.1" (6.0.0 not work!!!), quickle, matplot, flask, numpy...
+ssh tennel to gse3
+flask run
